@@ -3,6 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.geometry.Insets?>
+
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.knowledgemanager.controllers.MainController">
     <top>
         <MenuBar>
@@ -27,6 +29,16 @@
         </MenuBar>
     </top>
     <center>
-        <ListView fx:id="noteList" />
+        <SplitPane dividerPositions="0.3">
+            <ListView fx:id="noteList" />
+            <VBox spacing="10" xmlns:fx="http://javafx.com/fxml">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <TextField fx:id="noteTitle" promptText="Note Title" />
+                <TextArea fx:id="noteContent" promptText="Write Your note here..." />
+            </VBox>
+        </SplitPane>
+
     </center>
 </BorderPane>

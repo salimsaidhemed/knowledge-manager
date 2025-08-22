@@ -1,15 +1,23 @@
 package com.knowledgemanager.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+
+
+//models
+import com.knowledgemanager.models.Note;
 
 
 public class MainController {
 
     @FXML
-    private ListView<String> noteList;
+    private ListView<Note> noteList;
 
     @FXML
     private MenuItem openMenu;
@@ -32,15 +40,51 @@ public class MainController {
     @FXML
     private MenuItem newNoteMenu;
 
+    @FXML
+    private TextField noteTitle;
+
+    @FXML
+    private TextArea noteContent;
+
+    private final ObservableList<Note> notes = FXCollections.observableArrayList();
+
     
 
     @FXML
     public void initialize() {
         // Add a welcome note
-        noteList.getItems().add("Welcome Note");
+        notes.add(new Note("Welcome Note","This is your first note!"));
+        noteList.setItems(notes);
 
-        newNoteMenu.setOnAction(e -> noteList.getItems().add("New Note " + (noteList.getItems().size() + 1)));
+        noteList.getSelectionModel().selectedItemProperty().addListener((obs,oldNote,newNote) -> {
+            if (newNote != null ){
+                noteTitle.setText(newNote.getTitle());
+                noteContent.setText(newNote.getContent());
+            }
+        });
+
+        newNoteMenu.setOnAction(e -> {
+            Note newNote = new Note("Untitled","");
+            notes.add(newNote);
+            noteList.getSelectionModel().select(newNote);
+        });
+
         exitMenu.setOnAction(e -> ((Stage) noteList.getScene().getWindow()).close());
+
+        noteTitle.textProperty().addListener((obs,oldVal,newVal)->{
+            Note selected = noteList.getSelectionModel().getSelectedItem();
+            if (selected != null){
+                selected.setTitle(newVal);
+                noteList.refresh();
+            }
+        });
+
+        noteContent.textProperty().addListener((obs, oldVal, newVal) -> {
+            Note selected = noteList.getSelectionModel().getSelectedItem();
+            if (selected != null) {
+                selected.setContent(newVal);
+            }
+        });
 
         mnuAbout.setOnAction(e -> {
             // Display about information
