@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.knowledgemanager.controllers.MainController">
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem fx:id="newNoteMenu" text="New Note" />
+                <MenuItem fx:id="openMenu" text="Open" />
+                <MenuItem fx:id="saveMenu" text="Save" />
+                <SeparatorMenuItem/>
+                <MenuItem fx:id="exitMenu" text="Exit" />
+            </Menu>
+            <Menu text="Edit">
+                <MenuItem fx:id="mnuUndo" text="Undo" />
+                <MenuItem fx:id="mnuRedo" text="Redo" />
+                <SeparatorMenuItem/>
+                <!-- <MenuItem fx:id="exitMenu" text="Cut" onAction="#handleCut"/>
+                <MenuItem text="Copy" onAction="#handleCopy"/>
+                <MenuItem text="Paste" onAction="#handlePaste"/> -->
+            </Menu>
+            <Menu text="Help">
+                <MenuItem fx:id="mnuAbout" text="About" />
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <ListView fx:id="noteList" />
+    </center>
+</BorderPane>
