@@ -1,3 +1,3 @@
-com/knowledgemanager/App.class
-com/knowledgemanager/controllers/MainController.class
-com/knowledgemanager/models/Note.class
+com\knowledgemanager\controllers\MainController.class
+com\knowledgemanager\App.class
+com\knowledgemanager\models\Note.class
